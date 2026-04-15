@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b5ed7" />
+  <title>بيبي تيوب</title>
+  <style>
+    :root{
+      --blue:#0b5ed7;
+      --card: rgba(11, 94, 215, .90);
+      --b1:#0b0b0b;
+      --b2:#151515;
+      --r:28px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: #071a2b url("bg.png") center / cover no-repeat fixed;
+    }
+    @media (max-width:768px){
+      body{ background-attachment: scroll; }
+    }
+
+    .wrap{max-width:520px;margin:0 auto;padding:16px 14px 44px}
+    .top{
+      text-align:center;font-weight:900;font-size:34px;margin:10px 0 18px;
+      color:#111;text-shadow:0 1px 0 rgba(255,255,255,.65)
+    }
+    .card{
+      background:var(--card);border-radius:var(--r);
+      padding:24px 14px 16px;
+      box-shadow:0 14px 28px rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12)
+    }
+    .brand{text-align:center;color:#fff;margin-bottom:14px}
+    .brand h1{margin:0;font-size:44px;font-weight:900}
+    .brand p{margin:10px 0 0;font-size:18px;opacity:.9;font-weight:700}
+
+    .list{display:grid;gap:14px;padding:6px 6px 10px}
+
+    .ep-btn{
+      width:100%;border:0;cursor:pointer;
+      padding:22px 16px;border-radius:var(--r);
+      background:linear-gradient(180deg,var(--b2),var(--b1));
+      color:#fff;font-size:30px;font-weight:900;
+      box-shadow:0 10px 18px rgba(0,0,0,.26);
+      text-align:center;
+    }
+    .ep-btn:active{transform:scale(.99)}
+
+    .panel{
+      background:rgba(255,255,255,.98);
+      border-radius:18px;padding:14px;
+      box-shadow:0 12px 22px rgba(0,0,0,.16);
+      border:1px solid rgba(0,0,0,.06);
+      overflow:hidden;
+      animation: panelIn .22s ease both;
+      transform-origin: top;
+    }
+    @keyframes panelIn{
+      from{opacity:0; transform: translateY(-6px) scaleY(.985);}
+      to{opacity:1; transform: translateY(0) scaleY(1);}
+    }
+
+    .placeholder{
+      width:100%;aspect-ratio:16/9;border-radius:16px;
+      border:1px dashed rgba(0,0,0,.2);
+      background:linear-gradient(135deg,#eef3ff,#f8faff);
+      display:grid;place-items:center;padding:10px;text-align:center;
+      font-weight:900;color:#1a2a44;
+    }
+    video{width:100%;display:block;border-radius:16px;background:#000}
+
+    .dl{
+      width:100%;margin-top:14px;padding:18px 16px;border:0;
+      cursor:pointer;border-radius:var(--r);
+      background:linear-gradient(180deg,var(--b2),var(--b1));
+      color:#fff;font-size:26px;font-weight:900;
+      box-shadow:0 10px 18px rgba(0,0,0,.26);
+    }
+    .dl:disabled{opacity:.55;cursor:not-allowed}
+
+    .note{margin-top:10px;font-size:12.5px;color:rgba(0,0,0,.7);text-align:center;line-height:1.6}
+
+    /* ===== إعلان تحت خالص ===== */
+    .bottom-ad{
+      display:block;
+      margin:14px 6px 2px;
+      text-decoration:none;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      background: rgba(0,0,0,.18);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .bottom-ad:hover{transform: translateY(-2px); filter: brightness(1.04)}
+    .bottom-ad .inner{
+      padding:16px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      background: rgba(11, 94, 215, .18);
+      backdrop-filter: blur(8px);
+      color:#fff;
+      font-weight:1000;
+      font-size:18px;
+      text-shadow: 0 10px 28px rgba(0,0,0,.45);
+    }
+    .bottom-ad .pill{
+      flex:0 0 auto;
+      padding:10px 12px;
+      border-radius:999px;
+      color:#111;
+      font-weight:1000;
+      background: linear-gradient(180deg, #ffffff, #e9f0ff);
+      border:1px solid rgba(255,255,255,.65);
+      white-space:nowrap;
+    }
+
+    /* الفيديو الجديد لقصص الأنبياء */
+    .prophet-video-section {
+      margin: 18px 6px 8px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,240,0.25);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+      transition: all 0.2s ease;
+    }
+    .prophet-header {
+      background: linear-gradient(135deg, #0a2a3b, #03111c);
+      padding: 12px 14px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #FFE5B4;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255,200,100,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .prophet-header span:first-child {
+      font-size: 26px;
+    }
+    .video-container {
+      background: #000000cc;
+      padding: 6px;
+    }
+    .video-container video {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+      background: #000;
+      aspect-ratio: 16/9;
+    }
+    .prophet-caption {
+      background: #fef9e6;
+      padding: 12px;
+      text-align: center;
+      font-weight: 800;
+      color: #a34400;
+      font-size: 15px;
+      border-top: 1px solid #ffda99;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">😍 مشاهدة ممتعة</div>
+  <section class="card">
+    <header class="brand">
+      <h1>بيبي تيوب</h1>
+      <p>اختر الحلقة للمشاهدة أو التحميل</p>
+    </header>
+
+    <div class="list" id="list">
+      <!-- الحلقات 1..25 -->
+      <div class="item"><button class="ep-btn" data-ep="1" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/1.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/1.mp4">الحلقة 1</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="2" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/2.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/2.mp4">الحلقة 2</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="3" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/3.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/3.mp4">الحلقة 3</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="4" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/4.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/4.mp4">الحلقة 4</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="5" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/5.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/5.mp4">الحلقة 5</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="6" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/6.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/6.mp4">الحلقة 6</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="7" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/7.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/7.mp4">الحلقة 7</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="8" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/8.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/8.mp4">الحلقة 8</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="9" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/9.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/9.mp4">الحلقة 9</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="10" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/10.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/10.mp4">الحلقة 10</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="11" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/11.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/11.mp4">الحلقة 11</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="12" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/12.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/12.mp4">الحلقة 12</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="13" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/13.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/13.mp4">الحلقة 13</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="14" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/14.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/14.mp4">الحلقة 14</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="15" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/15.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/15.mp4">الحلقة 15</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="16" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/16.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/16.mp4">الحلقة 16</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="17" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/17.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/17.mp4">الحلقة 17</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="18" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/18.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/18.mp4">الحلقة 18</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="19" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/19.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/19.mp4">الحلقة 19</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="20" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/20.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/20.mp4">الحلقة 20</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="21" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/21.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/21.mp4">الحلقة 21</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="22" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/22.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/22.mp4">الحلقة 22</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="23" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/23.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/23.mp4">الحلقة 23</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="24" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/24.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/24.mp4">الحلقة 24</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="25" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/25.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/25.mp4">الحلقة 25</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+
+      <!-- الحلقات 26..40 -->
+      <div class="item"><button class="ep-btn" data-ep="26" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/26.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/26.mp4">الحلقة 26</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="27" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/27.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/27.mp4">الحلقة 27</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="28" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/28.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/28.mp4">الحلقة 28</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="29" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/29.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/29.mp4">الحلقة 29</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="30" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/30.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/30.mp4">الحلقة 30</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="31" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/31.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/31.mp4">الحلقة 31</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="32" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/32.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/32.mp4">الحلقة 32</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="33" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/33.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/33.mp4">الحلقة 33</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="34" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/34.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/34.mp4">الحلقة 34</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="35" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/35.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/35.mp4">الحلقة 35</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="36" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/36.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/36.mp4">الحلقة 36</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="37" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/37.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/37.mp4">الحلقة 37</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="38" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/38.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/38.mp4">الحلقة 38</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="39" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/39.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/39.mp4">الحلقة 39</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="40" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/40.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/40.mp4">الحلقة 40</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+
+      <!-- الحلقات 41..75 (جميع الروابط مضافة) -->
+      <div class="item"><button class="ep-btn" data-ep="41" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/41.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/41.mp4">الحلقة 41</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="42" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/42.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/42.mp4">الحلقة 42</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="43" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/43.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/43.mp4">الحلقة 43</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="44" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/44.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/44.mp4">الحلقة 44</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="45" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/45.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/45.mp4">الحلقة 45</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="46" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/46.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/46.mp4">الحلقة 46</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="47" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/47.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/47.mp4">الحلقة 47</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="48" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/48.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/48.mp4">الحلقة 48</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="49" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/49.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/49.mp4">الحلقة 49</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="50" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/50.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/50.mp4">الحلقة 50</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="51" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/51.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/51.mp4">الحلقة 51</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="52" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/52.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/52.mp4">الحلقة 52</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="53" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/53.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/53.mp4">الحلقة 53</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="54" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/54.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/54.mp4">الحلقة 54</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="55" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/55.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/55.mp4">الحلقة 55</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="56" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/56.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/56.mp4">الحلقة 56</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="57" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/57.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/57.mp4">الحلقة 57</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="58" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/58.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/58.mp4">الحلقة 58</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="59" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/59.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/59.mp4">الحلقة 59</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="60" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/60.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/60.mp4">الحلقة 60</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="61" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/61.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/61.mp4">الحلقة 61</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="62" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/62.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/62.mp4">الحلقة 62</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="63" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/63.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/63.mp4">الحلقة 63</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="64" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/64.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/64.mp4">الحلقة 64</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="65" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/65.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/65.mp4">الحلقة 65</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="66" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/66.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/66.mp4">الحلقة 66</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="67" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/67.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/67.mp4">الحلقة 67</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="68" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/68.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/68.mp4">الحلقة 68</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="69" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/69.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/69.mp4">الحلقة 69</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="70" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/70.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/70.mp4">الحلقة 70</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="71" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/71.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/71.mp4">الحلقة 71</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="72" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/72.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/72.mp4">الحلقة 72</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="73" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/73.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/73.mp4">الحلقة 73</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="74" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/74.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/74.mp4">الحلقة 74</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+      <div class="item"><button class="ep-btn" data-ep="75" data-video="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/75.mp4" data-download="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/75.mp4">الحلقة 75</button><div class="panel" hidden><div class="media"></div><button class="dl">تحميل الحلقة</button><div class="note"></div></div></div>
+    </div>
+
+    <!-- إعلان تحت خالص -->
+    <a class="bottom-ad" href="https://www.facebook.com/share/14WiyqiTqZE/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+      <div class="inner">
+        <div>اتفرج على قصص الانبيا كامله 😍</div>
+        <div class="pill">افتح الآن</div>
+      </div>
+    </a>
+
+    <!-- الفيديو الجديد لقصص الأنبياء -->
+    <div class="prophet-video-section">
+      <div class="prophet-header">
+        <span>📖</span> قصة الأنبياء كاملة <span>🕌</span>
+      </div>
+      <div class="video-container">
+        <video controls preload="metadata" poster="">
+          <source src="https://uploads.zadlibrary.com/wp-content/uploads/2026/04/promo-prophets.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+      </div>
+      <div class="prophet-caption">
+        ⭐ مشاهدة ممتعة ⭐
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<script>
+  const list = document.getElementById("list");
+  const FB_LINK = "https://www.facebook.com/share/14WiyqiTqZE/?mibextid=wwXIfr"; // لم يعد مستخدماً لكن نبقيه احتراماً للكود الأصلي
+
+  // فتح تحت نفس الحلقة + لا نقفل أي حلقة أخرى
+  list.addEventListener("click", (e) => {
+    const btn = e.target.closest(".ep-btn");
+    if (!btn) return;
+
+    const item = btn.parentElement;
+    const panel = item.querySelector(".panel");
+    const media = panel.querySelector(".media");
+    const dlBtn = panel.querySelector(".dl");
+    const note = panel.querySelector(".note");
+
+    // toggle فقط لهذه اللوحة (بدون إخفاء اللوحات الأخرى)
+    panel.hidden = !panel.hidden;
+    if (panel.hidden) return;
+
+    const ep = Number(btn.dataset.ep);
+    const videoUrl = (btn.dataset.video || "").trim();
+    const downloadUrl = (btn.dataset.download || "").trim();
+    const finalUrl = downloadUrl || videoUrl;
+
+    // جميع الحلقات من 1 إلى 75 أصبح لها فيديو - نعرض الفيديو مباشرة
+    if (videoUrl) {
+      media.innerHTML = `<video controls preload="metadata" src="${videoUrl}"></video>`;
+      note.textContent = " ";
+    } else {
+      // في حالة عدم وجود رابط (لن يحدث الآن لكن للاحتياط)
+      media.innerHTML = `<div class="placeholder">مكان الفيديو هنا<br><span style="font-weight:700;opacity:.75;font-size:13px;">(لم يتم إضافة رابط الفيديو بعد)</span></div>`;
+      note.textContent = "عذراً، رابط الحلقة غير متوفر حالياً.";
+    }
+
+    // تمكين زر التحميل إذا كان الرابط موجوداً
+    dlBtn.disabled = !finalUrl;
+
+    dlBtn.onclick = () => {
+      if (!finalUrl) return;
+      const filename = `episode-${String(ep).padStart(2, "0")}.mp4`;
+      const a = document.createElement("a");
+      a.href = finalUrl;
+      a.download = filename;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    };
+
+    setTimeout(() => panel.scrollIntoView({ behavior: "smooth", block: "nearest" }), 10);
+  });
+</script>
+</body>
+</html>
